@@ -4,14 +4,14 @@
         <img class="aspect-1 h-10" src="{{ user.profile_picture_url }}" alt="User's profile picture">
     </div>
 
-    <div class="hidden absolute top-8 right-0 z-50 rounded-md w-max flex-col group-hover:flex min-w-32">
+    <div class="hidden absolute top-8 right-0 z-50 rounded-md w-max group-hover:flex flex-col min-w-36">
         <div class="h-4 bg-transparent w-full"></div>
-        <div class="shadow-xl bg-indigo-900 rounded-md flex flex-col">
+        <div class="shadow-xl bg-indigo-900 rounded-md flex flex-col items-end overflow-hidden">
             <a class="px-3 py-2 w-full hover:bg-indigo-950/30 transition-colors" href="">Account</a>
             <a class="px-3 py-2 w-full hover:bg-indigo-950/30 transition-colors" href="">Settings</a>
             <form action="{% url 'accounts:logout' %}" method="POST" class="px-3 py-2 w-full hover:bg-indigo-950/30 transition-colors">
                 {% csrf_token %}
-                <button type="submit">Logout</button>
+                <button class="text-red-400" type="submit">Logout</button>
             </form>
         </div>
     </div>
