@@ -3,89 +3,86 @@
 
 {% block content %}
 
-<div class="appointment-form-container">
+<main class="flex-1 bg-gray-100-700 text-slate-800 grid place-items">
 
 
-    <div class="form-wrapper">
-
-        <div class="form-hero-wrapper text-white">
-            <div class="form-hero">
-                <h2 class="text-center text-white title">Reserva tu cita</h2>
-                <p class="text-center text-white secondary-text">
-                    Completa el formulario para enviar tu solicitud
-                </p>
+    <div class="grid place-items-center">
+    
+        <div class="bg-gray-100 grid grid-cols-2 w-11/12 max-w-[1400px] rounded-md shadow-md overflow-hidden">
+            <form class="p-12" method="post">
+                {% csrf_token %}
+                <p class="secondary-text">Reserva tu cita rellenando este formulario. Sencillo y rápido. Recibirás un correo con la confirmación de la cita.</p>
+    
+                <div class="double-input-container">
+                    <div class="input-wrapper {% if form.nombre.errors %}has-error{% endif %}">
+                        <input class="input" type="text" id="id-nombre" name="nombre" required placeholder=" " />
+                        <label class="label" for="id-nombre">Nombre *</label>
+                    </div>
+        
+                    <div class="input-wrapper {% if form.apellidos.errors %}has-error{% endif %}">
+                        <input class="input" type="text" id="id-apellidos" name="apellidos" required placeholder=" " />
+                        <label class="label" for="id-apellidos">Apellidos *</label>
+                    </div>
+                </div>
+        
+                <div class="double-input-container">
+                    <div class="input-wrapper {% if form.numero_telefono.errors %}has-error{% endif %}">
+                        <input class="input" type="text" id="id-numero_telefono" name="numero_telefono" required placeholder=" " />
+                        <label class="label" for="id-numero_telefono">Número teléfono *</label>
+                    </div>
+                    <div class="input-wrapper {% if form.email.errors %}has-error{% endif %}">
+                        <input class="input" type="email" id="id-email" name="email" required placeholder=" " />
+                        <label class="label" for="id-email">Correo electrónico *</label>
+                    </div>
+                </div>
+        
+                <div class="double-input-container">
+                    <div class="input-wrapper {% if form.fecha_cita.errors %}has-error{% endif %}">
+                        <input class="input" type="date" id="id-fecha_cita" name="fecha_cita" required placeholder=" " />
+                        <label class="label" for="text">Fecha de la cita *</label>
+                    </div>
+        
+                    <div class="select-wrapper {% if form.hora_cita.errors %}has-error{% endif %} ">
+                        <select class="select" id="id-hora_cita" name="hora_cita">
+                            <option selected id="default-time-option" disabled="disabled">Seleccione un día para ver las horas disponibles</option>
+                        </select>
+                        <label class="label" for="text">Hora de la cita *</label>
+                    </div>
+                </div>
+    
+                <div class="input-wrapper">
+                    <textarea class="input" id="id-comentarios" name="comentarios" placeholder=" "></textarea>
+                    <label class="label" for="id-comentarios">Comentarios</label>
+                </div>
+        
+                <p class="secondary-text">Los campos con * son obligatorios.</p>            
+    
+                <div class="form-errors">
+                    {% for field, errors in form.errors.items %}            
+                            <p class="error"><strong>{{ field|capfirst }}</strong>:&nbsp;{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                    {% endfor %}
+    
+                    {% for errors in form.non_field_errors.items %}            
+                            <p class="error">{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                    {% endfor %}
+                </div>
+    
+                <button class="submit-button button-primary button-primary_small" type="submit">Reservar Cita</button>
+                <p class="secondary-text">Al enviar el formulario indica que usted esta de acuerdo con los términos y condiciones.</p>
+            
+            </form>
+            <div class="relative">
+                <div class="relative z-30 w-11/12 h-full mx-auto py-6 flex flex-col gap-2 items-center justify-center">
+                    <h2 class="text-center text-5xl text-gray-100 font-black">Book your <span class="underline text-yellow-500 decoration-yellow-500">appointment</span>!</h2>
+                    <p class="text-gray-100 text-center secondary-text">Fill the form to fulfill your appointment.</p>
+                </div>
+                <img class="z-10 h-full object-cover brightness-50 absolute top-0 left-0" src="{% static 'images/appointment_form_image.png' %}" alt="Appointment form image">
             </div>
         </div>
-    
-        <form class="form" method="post">
-            {% csrf_token %}
-
-            <p class="secondary-text">Reserva tu cita rellenando este formulario. Sencillo y rápido. Recibirás un correo con la confirmación de la cita.</p>
-
-            <div class="double-input-container">
-                <div class="input-wrapper {% if form.nombre.errors %}has-error{% endif %}">
-                    <input class="input" type="text" id="id-nombre" name="nombre" required placeholder=" " />
-                    <label class="label" for="id-nombre">Nombre *</label>
-                </div>
-    
-                <div class="input-wrapper {% if form.apellidos.errors %}has-error{% endif %}">
-                    <input class="input" type="text" id="id-apellidos" name="apellidos" required placeholder=" " />
-                    <label class="label" for="id-apellidos">Apellidos *</label>
-                </div>
-            </div>
-    
-            <div class="double-input-container">
-                <div class="input-wrapper {% if form.numero_telefono.errors %}has-error{% endif %}">
-                    <input class="input" type="text" id="id-numero_telefono" name="numero_telefono" required placeholder=" " />
-                    <label class="label" for="id-numero_telefono">Número teléfono *</label>
-                </div>
-                <div class="input-wrapper {% if form.email.errors %}has-error{% endif %}">
-                    <input class="input" type="email" id="id-email" name="email" required placeholder=" " />
-                    <label class="label" for="id-email">Correo electrónico *</label>
-                </div>
-            </div>
-    
-            <div class="double-input-container">
-                <div class="input-wrapper {% if form.fecha_cita.errors %}has-error{% endif %}">
-                    <input class="input" type="date" id="id-fecha_cita" name="fecha_cita" required placeholder=" " />
-                    <label class="label" for="text">Fecha de la cita *</label>
-                </div>
-    
-                <div class="select-wrapper {% if form.hora_cita.errors %}has-error{% endif %} ">
-                    <select class="select" id="id-hora_cita" name="hora_cita">
-                        <option selected id="default-time-option" disabled="disabled">Seleccione un día para ver las horas disponibles</option>
-                    </select>
-                    <label class="label" for="text">Hora de la cita *</label>
-                </div>
-            </div>
-
-            <div class="input-wrapper">
-                <textarea class="input" id="id-comentarios" name="comentarios" placeholder=" "></textarea>
-                <label class="label" for="id-comentarios">Comentarios</label>
-            </div>
-    
-            <p class="secondary-text">Los campos con * son obligatorios.</p>            
-
-            <div class="form-errors">
-                {% for field, errors in form.errors.items %}            
-                        <p class="error"><strong>{{ field|capfirst }}</strong>:&nbsp;{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
-                {% endfor %}
-
-                {% for errors in form.non_field_errors.items %}            
-                        <p class="error">{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
-                {% endfor %}
-            </div>
-
-            <button class="submit-button button-primary button-primary_small" type="submit">Reservar Cita</button>
-            <p class="secondary-text">Al enviar el formulario indica que usted esta de acuerdo con los términos y condiciones.</p>
-        
-        </form>
 
     </div>
 
-    {% url 'appointments:available-times' as available_time_url %}
     <script>
-
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
@@ -112,7 +109,7 @@
             const payload = JSON.stringify(selectedDay);
 
             try {
-                const response = await fetch("{{ available_time_url }}", {
+                const response = await fetch("{% url 'appointments:available-times' %}", {
                     method: "POST",
                     headers: {
                         "X-CSRFToken": csrftoken,
@@ -159,6 +156,6 @@
         document.getElementById("id-fecha_cita").addEventListener("change", setAvailableTimes);
     </script>
 
-</div>
+</main>
 
 {% endblock %}

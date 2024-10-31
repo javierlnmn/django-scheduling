@@ -3,31 +3,31 @@
 
 {% block content %}
 
-<main class="flex-1 grid place-items-center bg-indigo-700 text-white">
+<main class="flex-1 grid place-items-center bg-gray-100-700 text-sky-900">
 
     <section class="w-11/12 max-w-[1200px] mx-auto py-6">
         
-        <h2 class="text-5xl max-md:text-3xl font-black text-center italic"><span class="underline text-yellow-300 decoration-yellow-300">Log in</span> to your account</h2>
+        <h2 class="text-5xl max-md:text-3xl font-black text-center italic"><span class="underline text-yellow-500 decoration-yellow-500">Log in</span> to your account</h2>
 
-        <div class="max-w-[500px] mx-auto bg-indigo-800/60 shadow-lg rounded-lg p-8 mt-6">
+        <div class="max-w-[500px] mx-auto bg-gray-100/60 shadow-lg rounded-lg p-8 mt-6">
             <form method="POST" action="{% url 'accounts:login' %}">
                 {% csrf_token %}
                 <div class="flex flex-col gap-8">
                     <div class="group w-full">
                         <label for="password" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500">Username</label>
-                        <input required type="username" name="username" id="username" placeholder="Username" class="h-10 w-full border-0 placeholder-white/80 group-focus-within:placeholder-yellow-400/80 rounded-md px-4 outline-none drop-shadow-sm transition-all duration-200 ease-in-out bg-indigo-700 focus:ring-0" />
+                        <input required type="username" name="username" id="username" placeholder="Username" class="bg-gray-100 border-sky-900/20 border-2 h-10 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-4 outline-none transition-all duration-200 ease-in-out bg-gray-100-700 focus:ring-0" />
                     </div>
 
                     <div class="group w-full">
                         <label for="password" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500">Password</label>
-                        <input required type="password" name="password" id="password" placeholder="Password" class="h-10 w-full border-0 placeholder-white/80 group-focus-within:placeholder-yellow-400/80 rounded-md px-4 outline-none drop-shadow-sm transition-all duration-200 ease-in-out bg-indigo-700 focus:ring-0" />
+                        <input required type="password" name="password" id="password" placeholder="Password" class="bg-gray-100 border-sky-900/20 border-2 h-10 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-4 outline-none transition-all duration-200 ease-in-out bg-gray-100-700 focus:ring-0" />
                     </div>
 
                     <div class="flex flex-col items-end gap-4">
-                        <a class="underline text-white/80 hover:text-white" href="">Forgot your password?</a>
-                        <a class="underline text-white/80 hover:text-white" href="">Haven't got an account?</a>
+                        <a class="underline text-sky-900/80 hover:text-sky-900" href="">Forgot your password?</a>
+                        <a class="underline text-sky-900/80 hover:text-sky-900" href="">Haven't got an account?</a>
                     </div>
-                    <button type="submit" class="px-4 h-10 bg-yellow-500 hover:bg-yellow-600 transition-colors text-white rounded-md">Login</button>
+                    <button type="submit" class="px-4 h-10 bg-yellow-500 hover:bg-yellow-600 transition-colors text-gray-100 rounded-md">Login</button>
                 </div>
             </form>
         </div>    
