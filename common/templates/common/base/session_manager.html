@@ -1,0 +1,31 @@
+{% if user.is_authenticated %}
+<div class="mx-auto flex items-center justify-center">
+    <div class="group relative cursor-pointer py-2">
+
+        <div class="flex items-center justify-between space-x-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 stroke-yellow-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+            </svg>
+        </div>
+
+        <div class="hidden absolute top-8 left-0 z-50 rounded-md w-max flex-col group-hover:flex min-w-32">
+            <div class="h-4 bg-transparent w-full"></div>
+            <div class="shadow-xl bg-indigo-900 rounded-md flex flex-col">
+                <a class="px-3 py-2 w-full hover:bg-indigo-950/30 transition-colors" href="">Account</a>
+                <a class="px-3 py-2 w-full hover:bg-indigo-950/30 transition-colors" href="">Settings</a>
+                <form action="{% url 'accounts:logout' %}" method="POST" class="px-3 py-2 w-full hover:bg-indigo-950/30 transition-colors">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <a href="{% url 'accounts:login' %}" class="group transition duration-300 hover:text-yellow-200">
+        <span>Login</span>
+        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-yellow-300"></span>
+    </a>
+{% endif %}

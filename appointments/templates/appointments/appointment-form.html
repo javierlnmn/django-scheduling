@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% load custom_tags %}
+{% load static %} 
+
+{% block content %}
+
+<div class="appointment-form-container">
+
+
+    <div class="form-wrapper">
+
+        <div class="form-hero-wrapper text-white">
+            <div class="form-hero">
+                <h2 class="text-center text-white title">Reserva tu cita</h2>
+                <p class="text-center text-white secondary-text">
+                    Completa el formulario para enviar tu solicitud
+                </p>
+            </div>
+        </div>
+    
+        <form class="form" method="post">
+            {% csrf_token %}
+
+            <p class="secondary-text">Reserva tu cita rellenando este formulario. Sencillo y rápido. Recibirás un correo con la confirmación de la cita.</p>
+
+            <div class="double-input-container">
+                <div class="input-wrapper {% if form.nombre.errors %}has-error{% endif %}">
+                    <input class="input" type="text" id="id-nombre" name="nombre" required placeholder=" " />
+                    <label class="label" for="id-nombre">Nombre *</label>
+                </div>
+    
+                <div class="input-wrapper {% if form.apellidos.errors %}has-error{% endif %}">
+                    <input class="input" type="text" id="id-apellidos" name="apellidos" required placeholder=" " />
+                    <label class="label" for="id-apellidos">Apellidos *</label>
+                </div>
+            </div>
+    
+            <div class="double-input-container">
+                <div class="input-wrapper {% if form.numero_telefono.errors %}has-error{% endif %}">
+                    <input class="input" type="text" id="id-numero_telefono" name="numero_telefono" required placeholder=" " />
+                    <label class="label" for="id-numero_telefono">Número teléfono *</label>
+                </div>
+                <div class="input-wrapper {% if form.email.errors %}has-error{% endif %}">
+                    <input class="input" type="email" id="id-email" name="email" required placeholder=" " />
+                    <label class="label" for="id-email">Correo electrónico *</label>
+                </div>
+            </div>
+    
+            <div class="double-input-container">
+                <div class="input-wrapper {% if form.fecha_cita.errors %}has-error{% endif %}">
+                    <input class="input" type="date" id="id-fecha_cita" name="fecha_cita" required placeholder=" " />
+                    <label class="label" for="text">Fecha de la cita *</label>
+                </div>
+    
+                <div class="select-wrapper {% if form.hora_cita.errors %}has-error{% endif %} ">
+                    <select class="select" id="id-hora_cita" name="hora_cita">
+                        <option selected id="default-time-option" disabled="disabled">Seleccione un día para ver las horas disponibles</option>
+                    </select>
+                    <label class="label" for="text">Hora de la cita *</label>
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <textarea class="input" id="id-comentarios" name="comentarios" placeholder=" "></textarea>
+                <label class="label" for="id-comentarios">Comentarios</label>
+            </div>
+    
+            <p class="secondary-text">Los campos con * son obligatorios.</p>            
+
+            <div class="form-errors">
+                {% for field, errors in form.errors.items %}            
+                        <p class="error"><strong>{{ field|capfirst }}</strong>:&nbsp;{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                {% endfor %}
+
+                {% for errors in form.non_field_errors.items %}            
+                        <p class="error">{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                {% endfor %}
+            </div>
+
+            <button class="submit-button button-primary button-primary_small" type="submit">Reservar Cita</button>
+            <p class="secondary-text">Al enviar el formulario indica que usted esta de acuerdo con los <a href="{% url 'web:terms_and_conditions' %}" class="animated-link">términos y condiciones</a>.</p>
+        
+        </form>
+
+    </div>
+
+    {% url 'appointments:available_time' as available_time_url %}
+    <script>
+        const csrftoken = Cookies.get('csrftoken');
+
+        async function getAvailableTimes() {
+
+            const appointmentDate = document.getElementById('id-fecha_cita').value;
+
+            const selectedDay = { selected_day: appointmentDate };
+            const payload = JSON.stringify(selectedDay);
+
+            try {
+                const response = await fetch("{{ available_time_url }}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": csrftoken,
+                        'Content-Type': 'application/json',
+                    },
+                    body: payload,
+                });
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+        
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error(error);
+
+                return [];
+            }
+        }
+
+        async function setAvailableTimes() {
+            const selectInputAppointmentTime = document.getElementById("id-hora_cita");
+            const defaultOption = document.getElementById("default-time-option");
+            const availableTimes = await getAvailableTimes();
+            
+            try {
+                selectInputAppointmentTime.innerHTML = '';
+        
+                selectInputAppointmentTime.appendChild(defaultOption)
+                
+                for (const time of availableTimes) {
+                    const option = document.createElement("option");
+
+                    option.value = time.time_value;
+                    option.text = time.time_label;
+                    selectInputAppointmentTime.appendChild(option);
+                }
+            } catch (error) {
+                console.error("An error occurred:", error);
+            }
+        }
+
+        document.getElementById("id-fecha_cita").addEventListener("change", setAvailableTimes);
+    </script>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% comment %} {% load custom_tags %}
+{% load static %}  {% endcomment %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="title text-center margin-top">{{ submitted_data.nombre|title }}, ¡tu cita ha sido <span class="text-primary-color">confirmada</span>!</h2>
+
+    <p class="text-primary-color-dark text-center">En breves recibirás un correo a <span class="text-primary-color underlined">{{ submitted_data.email }}</span> con los detalles de la cita. Si no te llega ningún correo, 
+    <a href="{% url 'web:contact_form' %}" class="animated-link">contáctanos</a> o envíanos un Whatsapp. Gracias por confiar en nosotros.</p>
+
+    <p class="subtitle text-center margin-top">Te esperamos el día <span class="text-primary-color text-extra-bold">{{ submitted_data.fecha_cita }} a las {{ submitted_data.hora_cita }}</span>.</p>
+    <p class="secondary-text text-center">No dudes en <a href="{% url 'web:contact_form' %}" class="animated-link">contactarnos</a> para cualquier tipo de consulta. Estamos a tu disposición.</p>
+
+    <div class="margin-top center-element">
+        <a href="{% url 'web:index' %}" class="button-primary">Volver al inicio</a>
+    </div>
+
+</div>
+
+{% endblock %}

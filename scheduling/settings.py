@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     # Other apps
     'common',
     'accounts',
+    'appointments',
 ]
 
 MIDDLEWARE = [
