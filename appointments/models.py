@@ -67,7 +67,7 @@ class Appointment(models.Model):
     @staticmethod
     def get_available_times(date):
         
-        is_holiday = Holiday.objects.filter(dia_festividad=date).exists()
+        is_holiday = Holiday.objects.filter(date=date).exists()
             
         if is_holiday:
             available_times = []
