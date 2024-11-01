@@ -80,8 +80,8 @@ class Appointment(models.Model):
         existing_appointments = Appointment.objects.filter(appointment_date=date).values_list('appointment_time__time', flat=True)
 
         available_times = [{
-            'time_label': time.appointment_time.strftime('%H:%M'),
-            'time_value': time.id,
-        } for time in all_times if time.appointment_time not in existing_appointments]
+            'time_label': appointment_time.time.strftime('%H:%M'),
+            'time_value': appointment_time.id,
+        } for appointment_time in all_times if appointment_time.time not in existing_appointments]
 
         return available_times

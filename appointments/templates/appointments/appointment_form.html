@@ -3,78 +3,78 @@
 
 {% block content %}
 
-<main class="flex-1 bg-gray-100-700 text-slate-800 grid place-items">
+<main class="flex-1 bg-gray-50-700 text-sky-900 grid place-items">
 
-
-    <div class="grid place-items-center">
+    <div class="grid place-items-center py-8">
     
-        <div class="bg-gray-100 grid grid-cols-2 w-11/12 max-w-[1400px] rounded-md shadow-md overflow-hidden">
-            <form class="p-12" method="post">
+        <div class="bg-gray-50 grid grid-cols-2 w-11/12 max-w-[1400px] rounded-md shadow-md overflow-hidden">
+            <form class="p-12 flex flex-col gap-4" method="post">
                 {% csrf_token %}
                 <p class="secondary-text">Reserva tu cita rellenando este formulario. Sencillo y rápido. Recibirás un correo con la confirmación de la cita.</p>
     
-                <div class="double-input-container">
-                    <div class="input-wrapper {% if form.nombre.errors %}has-error{% endif %}">
-                        <input class="input" type="text" id="id-nombre" name="nombre" required placeholder=" " />
-                        <label class="label" for="id-nombre">Nombre *</label>
+                <div class="grid grid-cols-2 gap-4 items-start">
+                    <div class="group w-full">
+                        <label for="name-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500 {% if form.name.errors %}text-red-600{% endif %}">Name</label>
+                        <input required type="text" id="name-input" name="name" required placeholder="Name" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.name.errors %}placeholder-red-600 border-red-600 group-focus-within:border-red-500{% endif %}" />
                     </div>
         
-                    <div class="input-wrapper {% if form.apellidos.errors %}has-error{% endif %}">
-                        <input class="input" type="text" id="id-apellidos" name="apellidos" required placeholder=" " />
-                        <label class="label" for="id-apellidos">Apellidos *</label>
+                    <div class="group w-full">
+                        <label for="surname-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500 {% if form.surname.errors %}text-red-600{% endif %}">Surname</label>
+                        <input required type="text" id="surname-input" name="surname" required placeholder="Surname" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.surname.errors %}placeholder-red-600 border-red-600 group-focus-within:border-red-500{% endif %}" />
                     </div>
                 </div>
-        
-                <div class="double-input-container">
-                    <div class="input-wrapper {% if form.numero_telefono.errors %}has-error{% endif %}">
-                        <input class="input" type="text" id="id-numero_telefono" name="numero_telefono" required placeholder=" " />
-                        <label class="label" for="id-numero_telefono">Número teléfono *</label>
+
+                <div class="grid grid-cols-2 gap-4 items-start">
+                    <div class="group w-full">
+                        <label for="phone_number-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500 {% if form.phone_number.errors %}text-red-600{% endif %}">Phone Number</label>
+                        <input required type="text" id="phone_number-input" name="phone_number" required placeholder="Phone Number" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.phone_number.errors %}placeholder-red-600 border-red-600 group-focus-within:border-red-500{% endif %}" />
                     </div>
-                    <div class="input-wrapper {% if form.email.errors %}has-error{% endif %}">
-                        <input class="input" type="email" id="id-email" name="email" required placeholder=" " />
-                        <label class="label" for="id-email">Correo electrónico *</label>
+        
+                    <div class="group w-full">
+                        <label for="email-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500 {% if form.email.errors %}text-red-600{% endif %}">Email</label>
+                        <input required type="text" id="email-input" name="email" required placeholder="Email" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.email.errors %}placeholder-red-600 border-red-600 group-focus-within:border-red-500{% endif %}" />
                     </div>
                 </div>
-        
-                <div class="double-input-container">
-                    <div class="input-wrapper {% if form.fecha_cita.errors %}has-error{% endif %}">
-                        <input class="input" type="date" id="id-fecha_cita" name="fecha_cita" required placeholder=" " />
-                        <label class="label" for="text">Fecha de la cita *</label>
+
+                <div class="grid grid-cols-2 gap-4 items-start">
+                    <div class="group w-full">
+                        <label for="appointment_date-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500 {% if form.appointment_date.errors %}text-red-600{% endif %}">Date</label>
+                        <input required type="date" id="appointment_date-input" name="appointment_date" required placeholder="Date" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.appointment_date.errors %}placeholder-red-600 border-red-600 group-focus-within:border-red-500{% endif %}" />
                     </div>
         
-                    <div class="select-wrapper {% if form.hora_cita.errors %}has-error{% endif %} ">
-                        <select class="select" id="id-hora_cita" name="hora_cita">
-                            <option selected id="default-time-option" disabled="disabled">Seleccione un día para ver las horas disponibles</option>
+                    <div class="group w-full">
+                        <label for="appointment_time-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500 {% if form.appointment_time.errors %}text-red-600{% endif %}">Time</label>
+                        <select required type="text" id="appointment_time-input" name="appointment_time" required placeholder="Time" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.appointment_time.errors %}placeholder-red-600 border-red-600 group-focus-within:border-red-500{% endif %}" />
+                            <option selected id="default-time-option" disabled="disabled">Pick a date first.</option>
                         </select>
-                        <label class="label" for="text">Hora de la cita *</label>
                     </div>
                 </div>
     
-                <div class="input-wrapper">
-                    <textarea class="input" id="id-comentarios" name="comentarios" placeholder=" "></textarea>
-                    <label class="label" for="id-comentarios">Comentarios</label>
+                <div class="group w-full">
+                    <label for="note-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out group-focus-within:text-yellow-500 {% if form.note.errors %}text-red-600{% endif %}">Note</label>
+                    <textarea id="note-input" name="note" placeholder="Note" class="bg-gray-50 border-sky-900/20 border-2 h-32 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.note.errors %}placeholder-red-600 border-red-600 group-focus-within:border-red-500{% endif %}"></textarea>
                 </div>
         
-                <p class="secondary-text">Los campos con * son obligatorios.</p>            
+                <p class="italic text-sky-900/50">Fields flagged with * are required.</p>            
     
-                <div class="form-errors">
+                <div class="flex flex-col gap-4">
                     {% for field, errors in form.errors.items %}            
-                            <p class="error"><strong>{{ field|capfirst }}</strong>:&nbsp;{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                            <p class="text-red-600/60"><strong>{{ field|capfirst }}</strong>:&nbsp;{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
                     {% endfor %}
     
                     {% for errors in form.non_field_errors.items %}            
-                            <p class="error">{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                            <p class="text-red-600/60">{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
                     {% endfor %}
                 </div>
     
-                <button class="submit-button button-primary button-primary_small" type="submit">Reservar Cita</button>
-                <p class="secondary-text">Al enviar el formulario indica que usted esta de acuerdo con los términos y condiciones.</p>
+                <button class="h-12 rounded-md bg-sky-900 text-white" type="submit">Book Appointment</button>
+                <p class="text-sky-900/50">By sending this form you accept our <span class="underline">terms & conditions</span>.</p>
             
             </form>
             <div class="relative">
                 <div class="relative z-30 w-11/12 h-full mx-auto py-6 flex flex-col gap-2 items-center justify-center">
-                    <h2 class="text-center text-5xl text-gray-100 font-black">Book your <span class="underline text-yellow-500 decoration-yellow-500">appointment</span>!</h2>
-                    <p class="text-gray-100 text-center secondary-text">Fill the form to fulfill your appointment.</p>
+                    <h2 class="text-center text-5xl text-gray-50 font-black">Book your <span class="underline text-yellow-500 decoration-yellow-500">appointment</span>!</h2>
+                    <p class="text-gray-50 text-center secondary-text">Fill the form to fulfill your appointment.</p>
                 </div>
                 <img class="z-10 h-full object-cover brightness-50 absolute top-0 left-0" src="{% static 'images/appointment_form_image.png' %}" alt="Appointment form image">
             </div>
@@ -103,7 +103,7 @@
 
         async function getAvailableTimes() {
 
-            const appointmentDate = document.getElementById('id-fecha_cita').value;
+            const appointmentDate = document.getElementById('appointment_date-input').value;
 
             const selectedDay = { selected_day: appointmentDate };
             const payload = JSON.stringify(selectedDay);
@@ -132,7 +132,7 @@
         }
 
         async function setAvailableTimes() {
-            const selectInputAppointmentTime = document.getElementById("id-hora_cita");
+            const selectInputAppointmentTime = document.getElementById("appointment_time-input");
             const defaultOption = document.getElementById("default-time-option");
             const availableTimes = await getAvailableTimes();
             
@@ -153,7 +153,7 @@
             }
         }
 
-        document.getElementById("id-fecha_cita").addEventListener("change", setAvailableTimes);
+        document.getElementById("appointment_date-input").addEventListener("change", setAvailableTimes);
     </script>
 
 </main>
