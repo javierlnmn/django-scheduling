@@ -1,24 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'common/_main.html' %}
 
 {% comment %} {% load custom_tags %}
 {% load static %}  {% endcomment %}
 
 {% block content %}
 
-<div class="container">
+<main class="flex-1 flex flex-col justify-center items-center gap-4 text-sky-900">
 
-    <h2 class="title text-center margin-top">{{ submitted_data.nombre|title }}, ¡tu cita ha sido <span class="text-primary-color">confirmada</span>!</h2>
+    <h2 class="text-6xl font-black">{{ submitted_data.name|title }}, ¡your appointment has been <span class="text-yellow-500">confirmed</span>!</h2>
 
-    <p class="text-primary-color-dark text-center">En breves recibirás un correo a <span class="text-primary-color underlined">{{ submitted_data.email }}</span> con los detalles de la cita. Si no te llega ningún correo, 
-    <a href="{% url 'web:contact_form' %}" class="animated-link">contáctanos</a> o envíanos un Whatsapp. Gracias por confiar en nosotros.</p>
+    <p class="text-sky-900/60">You will recieve a mail with appointment details.</p>
 
-    <p class="subtitle text-center margin-top">Te esperamos el día <span class="text-primary-color text-extra-bold">{{ submitted_data.fecha_cita }} a las {{ submitted_data.hora_cita }}</span>.</p>
-    <p class="secondary-text text-center">No dudes en <a href="{% url 'web:contact_form' %}" class="animated-link">contactarnos</a> para cualquier tipo de consulta. Estamos a tu disposición.</p>
+    <p class="text-xl font-bold">We will be waiting for you on <span class="text-yellow-500 italic">{{ submitted_data.appointment_date }} at {{ submitted_data.appointment_time }}</span>.</p>
 
-    <div class="margin-top center-element">
-        <a href="{% url 'web:index' %}" class="button-primary">Volver al inicio</a>
-    </div>
+    <a href="{% url 'common:index' %}" class="italic group transition duration-300 hover:text-yellow-500">
+        <span>Back to index</span>
+        <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-yellow-500"></span>
+    </a>
 
-</div>
+</main>
 
 {% endblock %}
