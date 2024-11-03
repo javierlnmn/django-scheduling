@@ -1,7 +1,7 @@
 {% if user.is_authenticated %}
 <div class="group relative cursor-pointer">
     <div class="flex items-center justify-between space-x-5">
-        <img class="aspect-1 h-10" src="{{ user.profile_picture_url }}" alt="User's profile picture">
+        <img class="rounded-full aspect-1 h-10" src="{{ user.profile_picture_url }}" alt="User's profile picture">
     </div>
 
     <div class="hidden absolute top-8 right-0 z-50 rounded-md w-max group-hover:flex flex-col min-w-36">

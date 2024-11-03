@@ -15,24 +15,24 @@
                 <div class="grid grid-cols-2 gap-4 items-start">
                     <div class="group w-full">
                         <label for="name-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.name.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Name *</label>
-                        <input required type="text" id="name-input" name="name" required placeholder="Name" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.name.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} value="{{user.first_name}}" {% endif %} required type="text" id="name-input" name="name" required placeholder="Name" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.name.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
                     </div>
         
                     <div class="group w-full">
                         <label for="surname-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.surname.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Surname *</label>
-                        <input required type="text" id="surname-input" name="surname" required placeholder="Surname" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.surname.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} value="{{user.last_name}}" {% endif %} required type="text" id="surname-input" name="surname" required placeholder="Surname" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.surname.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 items-start">
                     <div class="group w-full">
                         <label for="phone_number-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.phone_number.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Phone Number *</label>
-                        <input required type="text" id="phone_number-input" name="phone_number" required placeholder="Phone Number" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.phone_number.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} value="{{user.phone_number}}" {% endif %} required type="text" id="phone_number-input" name="phone_number" required placeholder="Phone Number" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.phone_number.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
                     </div>
         
                     <div class="group w-full">
                         <label for="email-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.email.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Email *</label>
-                        <input required type="text" id="email-input" name="email" required placeholder="Email" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.email.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} value="{{user.email}}" {% endif %} required type="text" id="email-input" name="email" required placeholder="Email" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.email.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
                     </div>
                 </div>
 
