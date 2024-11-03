@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from common.utils import generate_unique_token
+from accounts.models import CustomUser
 
 from datetime import time, datetime
 import calendar
@@ -42,6 +43,7 @@ class AppointmentTime(models.Model):
 
 
 class Appointment(models.Model):
+    user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=25)

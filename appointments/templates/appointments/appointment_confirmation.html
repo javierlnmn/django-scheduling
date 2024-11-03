@@ -7,11 +7,11 @@
 
 <main class="flex-1 flex flex-col justify-center items-center gap-4 text-sky-900">
 
-    <h2 class="text-6xl font-black">{{ submitted_data.name|title }}, ¡your appointment has been <span class="text-yellow-500">confirmed</span>!</h2>
+    <h2 class="text-6xl max-md:text-4xl font-black text-center mx-3">{{ submitted_data.name|title }}, ¡your appointment has been <span class="text-yellow-500">confirmed</span>!</h2>
 
-    <p class="text-sky-900/60">You will recieve a mail with appointment details.</p>
+    <p class="text-sky-900/60 text-center">You will recieve a mail with appointment details.</p>
 
-    <p class="text-xl font-bold">We will be waiting for you on <span class="text-yellow-500 italic">{{ submitted_data.appointment_date }} at {{ submitted_data.appointment_time }}</span>.</p>
+    <p class="text-xl font-bold text-center">We will be waiting for you on <span class="text-yellow-500 italic">{{ submitted_data.appointment_date }} at {{ submitted_data.appointment_time }}</span>.</p>
 
     <a href="{% url 'common:index' %}" class="italic group transition duration-300 hover:text-yellow-500">
         <span>Back to index</span>

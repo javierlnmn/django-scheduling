@@ -18,6 +18,13 @@ class AppointmentFormView(FormView):
     success_url = reverse_lazy('appointments:appointment-confirmation-page')
     
     def form_valid(self, form):
+
+        if self.request.user.is_authenticated:
+            form.instance.user = self.request.user
+            form.instance.name = self.request.user.first_name
+            form.instance.surname = self.request.user.last_name
+            form.instance.email = self.request.user.email
+            form.instance.phone_number = self.request.user.phone_number
         
         if form.is_valid():
             submission = form.save()
