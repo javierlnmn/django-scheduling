@@ -1,0 +1,295 @@
+[
+    {
+        "model": "appointments.weekday",
+        "pk": 1,
+        "fields": {
+            "name": 0
+        }
+    },
+    {
+        "model": "appointments.weekday",
+        "pk": 2,
+        "fields": {
+            "name": 1
+        }
+    },
+    {
+        "model": "appointments.weekday",
+        "pk": 3,
+        "fields": {
+            "name": 2
+        }
+    },
+    {
+        "model": "appointments.weekday",
+        "pk": 4,
+        "fields": {
+            "name": 3
+        }
+    },
+    {
+        "model": "appointments.weekday",
+        "pk": 5,
+        "fields": {
+            "name": 4
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 1,
+        "fields": {
+            "time": "09:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 2,
+        "fields": {
+            "time": "09:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 3,
+        "fields": {
+            "time": "10:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 4,
+        "fields": {
+            "time": "10:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 5,
+        "fields": {
+            "time": "11:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 6,
+        "fields": {
+            "time": "11:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 7,
+        "fields": {
+            "time": "12:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 8,
+        "fields": {
+            "time": "12:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 9,
+        "fields": {
+            "time": "13:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 10,
+        "fields": {
+            "time": "13:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 11,
+        "fields": {
+            "time": "14:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 12,
+        "fields": {
+            "time": "16:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 13,
+        "fields": {
+            "time": "16:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 14,
+        "fields": {
+            "time": "17:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 15,
+        "fields": {
+            "time": "17:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 16,
+        "fields": {
+            "time": "18:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 17,
+        "fields": {
+            "time": "18:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 18,
+        "fields": {
+            "time": "19:00:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "appointments.appointmenttime",
+        "pk": 19,
+        "fields": {
+            "time": "19:30:00",
+            "week_days": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    }
+]

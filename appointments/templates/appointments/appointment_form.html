@@ -105,17 +105,13 @@
 
             const appointmentDate = document.getElementById('appointment_date-input').value;
 
-            const selectedDay = { selected_day: appointmentDate };
-            const payload = JSON.stringify(selectedDay);
-
             try {
-                const response = await fetch("{% url 'appointments:available-times' %}", {
-                    method: "POST",
+                const response = await fetch(`{% url 'appointments:available-times' %}?selectedDay=${appointmentDate}`, {
+                    method: "GET",
                     headers: {
                         "X-CSRFToken": csrftoken,
                         'Content-Type': 'application/json',
                     },
-                    body: payload,
                 });
         
                 if (!response.ok) {

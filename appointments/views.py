@@ -51,8 +51,7 @@ class AppointmentConfirmationView(TemplateView):
 
 
 def available_times(request):
-    json_data = json.loads(request.body)
-    selected_day = json_data.get('selected_day')
+    selected_day = request.GET.get('selectedDay')
 
     if not selected_day:
         return JsonResponse([], safe=False)
