@@ -7,36 +7,36 @@
 
     <div class="grid place-items-center py-8">
     
-        <div class="bg-gray-50 grid grid-cols-2 w-11/12 max-w-[1400px] rounded-md shadow-md overflow-hidden">
-            <form class="p-12 flex flex-col gap-4" method="post">
+        <div class="bg-gray-50 w-11/12 max-w-[1400px] rounded-md shadow-md overflow-hidden flex max-lg:flex-col-reverse">
+            <form class="w-1/2 max-lg:w-full p-12 flex flex-col gap-4 " method="post">
                 {% csrf_token %}
                 <p class="secondary-text">Book your appointment by filling up the form.</p>
     
-                <div class="grid grid-cols-2 gap-4 items-start">
+                <div class="flex gap-4 items-center max-sm:flex-col">
                     <div class="group w-full">
                         <label for="name-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.name.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Name *</label>
-                        <input {% if user.is_authenticated %} readonly="true" value="{{user.first_name}}" {% endif %} required type="text" id="name-input" name="name" required placeholder="Name" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.name.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} readonly="true" value="{{user.first_name}}" {% endif %} required type="text" id="name-input" name="name" required placeholder="Name" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.name.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
                     </div>
         
                     <div class="group w-full">
                         <label for="surname-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.surname.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Surname *</label>
-                        <input {% if user.is_authenticated %} readonly="true" value="{{user.last_name}}" {% endif %} required type="text" id="surname-input" name="surname" required placeholder="Surname" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.surname.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} readonly="true" value="{{user.last_name}}" {% endif %} required type="text" id="surname-input" name="surname" required placeholder="Surname" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.surname.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 items-start">
+                <div class="flex gap-4 items-center max-sm:flex-col">
                     <div class="group w-full">
                         <label for="phone_number-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.phone_number.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Phone Number *</label>
-                        <input {% if user.is_authenticated %} readonly="true" value="{{user.phone_number}}" {% endif %} required type="text" id="phone_number-input" name="phone_number" required placeholder="Phone Number" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.phone_number.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} readonly="true" value="{{user.phone_number}}" {% endif %} required type="text" id="phone_number-input" name="phone_number" required placeholder="Phone Number" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.phone_number.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
                     </div>
         
                     <div class="group w-full">
                         <label for="email-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.email.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Email *</label>
-                        <input {% if user.is_authenticated %} readonly="true" value="{{user.email}}" {% endif %} required type="email" id="email-input" name="email" required placeholder="Email" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.email.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}" />
+                        <input {% if user.is_authenticated %} readonly="true" value="{{user.email}}" {% endif %} required type="email" id="email-input" name="email" required placeholder="Email" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 read-only:opacity-50 {% if form.email.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 items-start">
+                <div class="flex gap-4 items-center max-sm:flex-col">
                     <div class="group w-full">
                         <label for="appointment_date-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.appointment_date.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Date *</label>
                         <input required type="date" id="appointment_date-input" name="appointment_date" required placeholder="Date" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.appointment_date.errors %}!text-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
@@ -52,7 +52,7 @@
     
                 <div class="group w-full">
                     <label for="note-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.note.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Note</label>
-                    <textarea id="note-input" name="note" placeholder="Note" class="bg-gray-50 border-sky-900/20 border-2 h-32 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.note.errors %}placeholder-red-600/80 border-red-600/80 group-focus-within:border-red-500{% endif %}"></textarea>
+                    <textarea id="note-input" name="note" placeholder="Note" class="bg-gray-50 border-sky-900/20 border-2 h-32 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.note.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}"></textarea>
                 </div>
         
                 <p class="italic text-sky-900/50">Fields flagged with * are required.</p>            
@@ -71,12 +71,12 @@
                 <p class="text-sky-900/50">By sending this form you accept our <span class="underline">terms & conditions</span>.</p>
             
             </form>
-            <div class="relative">
-                <div class="relative z-30 w-11/12 h-full mx-auto py-6 flex flex-col gap-2 items-center justify-center">
-                    <h2 class="text-center text-5xl text-gray-50 font-black">Book your <span class="underline text-yellow-500 decoration-yellow-500">appointment</span>!</h2>
+            <div class="w-1/2 max-lg:w-full relative max-lg:min-h-96">
+                <div class="relative z-30 w-11/12 h-full mx-auto py-6 flex flex-col gap-2 items-center justify-center max-lg:min-h-96">
+                    <h2 class="text-center text-5xl max-sm:text-3xl text-gray-50 font-black">Book your <span class="underline text-yellow-500 decoration-yellow-500">appointment</span>!</h2>
                     <p class="text-gray-50 text-center secondary-text">Fill the form to fulfill your appointment.</p>
                 </div>
-                <img class="z-10 h-full object-cover brightness-50 absolute top-0 left-0" src="{% static 'images/appointment_form_image.png' %}" alt="Appointment form image">
+                <img class="z-10 h-full max-lg:min-h-96 w-full object-cover brightness-50 absolute top-0 left-0" src="{% static 'images/appointment_form_image.png' %}" alt="Appointment form image">
             </div>
         </div>
 

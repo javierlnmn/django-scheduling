@@ -1,5 +1,5 @@
 from django.urls import path
-import appointments.views as views
+from . import views
 
 app_name="appointments"
 

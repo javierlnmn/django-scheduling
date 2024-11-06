@@ -1,0 +1,81 @@
+{% extends 'common/_main.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="flex-1 grid place-items-center bg-gray-50-700 text-sky-900">
+
+    <section class="w-11/12 max-w-[1200px] mx-auto py-6">
+        
+        <h2 class="text-5xl max-md:text-3xl font-black text-center italic"><span class="underline text-yellow-500 decoration-yellow-500">Create</span> your account</h2>
+
+        <div class="max-w-[800px] mx-auto bg-gray-50/60 shadow-lg rounded-lg p-8 mt-6">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-4 items-center max-sm:flex-col">
+                        <div class="group w-full">
+                            <label for="first_name-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.first_name.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">First Name *</label>
+                            <input required placeholder="First Name *" type="text" name="first_name" maxlength="150" id="first_name-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.first_name.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                        </div>
+    
+                        <div class="group w-full">
+                            <label for="last_name-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.last_name.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Last Name *</label>
+                            <input required placeholder="Last Name *" type="text" name="last_name" maxlength="150" id="last_name-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.last_name.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-center max-sm:flex-col">
+                        <div class="group w-full">
+                            <label for="username-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.username.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Username *</label>
+                            <input required placeholder="Username *" type="text" name="username" maxlength="150" id="username-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.username.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                        </div>
+    
+                        <div class="group w-full">
+                            <label for="phone_number-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.phone_number.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Phone Number</label>
+                            <input placeholder="Phone Number" type="text" name="phone_number" maxlength="150" id="phone_number-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.phone_number.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                        </div>
+                    </div>
+
+                    <div class="group w-full">
+                        <label for="email-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.email.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Email *</label>
+                        <input required placeholder="Email *" type="text" name="email" maxlength="150" id="email-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.email.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                    </div>
+
+                    <div class="flex gap-4 items-center max-sm:flex-col">
+                        <div class="group w-full">
+                            <label for="password1-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.password1.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Password *</label>
+                            <input required autocomplete="new-password *" placeholder="Password" type="password" name="password1" maxlength="150" id="password1-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.password1.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                        </div>
+    
+                        <div class="group w-full">
+                            <label for="password2-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.password2.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Repeat Password *</label>
+                            <input required autocomplete="new-password *" placeholder="Repeat Password" type="password" name="password2" maxlength="150" id="password2-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.password2.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-end gap-4">
+                        <a class="underline text-sky-900/80 hover:text-sky-900" href="{% url 'accounts:login' %}">Already got an account?</a>
+                    </div>
+                    
+                    {% if form.errors or form.non_field_errors %}
+                        <div class="flex flex-col gap-2">
+                            {% for field, errors in form.errors.items %}            
+                                    <p class="text-red-600/80"><strong>{{ field|capfirst }}</strong>:&nbsp;{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                            {% endfor %}
+            
+                            {% for errors in form.non_field_errors.items %}            
+                                    <p class="text-red-600/80">{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="px-4 h-10 bg-yellow-500 hover:bg-yellow-600 transition-colors text-gray-50 rounded-md">Register</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+</main>
+    
+{% endblock %}
