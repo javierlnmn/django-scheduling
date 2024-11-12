@@ -24,7 +24,8 @@ class AppointmentFormView(FormView):
             form.instance.name = self.request.user.first_name
             form.instance.surname = self.request.user.last_name
             form.instance.email = self.request.user.email
-            form.instance.phone_number = self.request.user.phone_number
+            if self.request.user.phone_number:
+                form.instance.phone_number = self.request.user.phone_number
         
         if form.is_valid():
             submission = form.save()

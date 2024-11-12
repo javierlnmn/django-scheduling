@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'common',
     'accounts',
     'appointments',
+    'diary',
 ]
 
 MIDDLEWARE = [

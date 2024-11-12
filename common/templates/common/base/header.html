@@ -8,6 +8,10 @@
                 <span>Book an appointment</span>
                 <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-yellow-500"></span>
             </a>
+            <a href="{% url 'diary:diary' %}" class="group transition duration-300 hover:text-yellow-500">
+                <span>Diary</span>
+                <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-yellow-500"></span>
+            </a>
             <div>
                 {% include 'common/base/session_manager.html' %} 
             </div>
