@@ -54,12 +54,19 @@ class DiaryView(LoginRequiredMixin, View):
 
             week_data = []
 
-            for day in week:
+            for day_index, day in enumerate(week):
+
+                is_weekend = day_index in [5, 6]
+
                 if day == 0:
                     week_data.append({"day": 0, "appointments": []})
                 else:
                     day_appointments = [appt for appt in user_appointments if appt.appointment_date.day == day]
-                    week_data.append({"day": day, "appointments": day_appointments})
+                    week_data.append({
+                        "day": day,
+                        "appointments": day_appointments,
+                        "is_weekend": is_weekend,
+                    })
 
             appointments_calendar.append(week_data)
 

@@ -2,8 +2,15 @@ import calendar
 from datetime import datetime
 
 def get_next_month(month: int, direction: str) -> tuple:
-    if month < 1 or month > 12:
-        raise ValueError("Month must be between 1 and 12")
+
+    if month == 0:
+        month = 1
+
+    if month < 0:
+        month *= -1
+
+    if month > 12:
+        month = month % 12
     
     if direction not in ["left", "right"]:
         raise ValueError("Direction must be either 'left' or 'right'")
