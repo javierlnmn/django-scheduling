@@ -1,0 +1,18 @@
+{% extends 'common/_main.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="flex-1 grid place-items-center bg-gray-50-700 text-sky-900">
+    {{user}}
+    <section class="w-11/12 max-w-[1200px] mx-auto py-6">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">dale</button>
+        </form>
+    </section>
+
+</main>
+    
+{% endblock %}

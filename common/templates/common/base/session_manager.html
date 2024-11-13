@@ -7,8 +7,7 @@
     <div class="hidden absolute top-8 right-0 z-50 rounded-md w-max group-hover:flex flex-col min-w-36">
         <div class="h-4 bg-transparent w-full"></div>
         <div class="shadow-md bg-white rounded-md flex flex-col items-end overflow-hidden">
-            <a class="text-sky-900 font-bold px-3 py-2 w-full hover:bg-gray-50 transition-colors" href="">Account</a>
-            <a class="text-sky-900 font-bold px-3 py-2 w-full hover:bg-gray-50 transition-colors" href="">Settings</a>
+            <a href="{% url 'accounts:profile' %}" class="text-sky-900 font-bold px-3 py-2 w-full hover:bg-gray-50 transition-colors" href="">Profile</a>
             <form action="{% url 'accounts:logout' %}" method="POST" class="text-sky-900 font-bold px-3 py-2 w-full hover:bg-gray-50 transition-colors">
                 {% csrf_token %}
                 <button class="text-red-400" type="submit">Logout</button>
