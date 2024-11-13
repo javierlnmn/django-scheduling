@@ -29,10 +29,10 @@ class DiaryView(LoginRequiredMixin, View):
             month_str = calendar.month_name[month_num]
             year = today.year
 
-        month_next = get_next_prev_month(month_num, 'next')
-        month_prev = get_next_prev_month(month_num, 'prev')
-        year_next = year + 1
-        year_prev = year - 1
+        month_next, year_next_changed = get_next_prev_month(month_num, 'next')
+        month_prev, year_prev_changed = get_next_prev_month(month_num, 'prev')
+        year_next = year + 1 if year_next_changed else year
+        year_prev = year - 1 if year_prev_changed else year
 
         month_first_date, month_last_date = get_month_first_last_dates(year, month_num)            
 
