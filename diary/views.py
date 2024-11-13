@@ -1,4 +1,5 @@
 import calendar
+from datetime import datetime
 
 from django.shortcuts import render
 from django.views.generic.base import View
@@ -43,6 +44,9 @@ class DiaryView(LoginRequiredMixin, View):
             user=user,
             appointment_date__gte=month_first_date,
             appointment_date__lte=month_last_date
+        ).order_by(
+            'appointment_date',
+            'appointment_time'
         )
 
         appointments_calendar = []
@@ -58,11 +62,16 @@ class DiaryView(LoginRequiredMixin, View):
                 if day == 0:
                     week_data.append({"day": 0, "appointments": []})
                 else:
-                    day_appointments = [appt for appt in user_appointments if appt.appointment_date.day == day]
+                    week_day_date = datetime.strptime(f'{year}-{month_num}-{day}', '%Y-%m-%d').date()
+                    day_appointments = user_appointments.filter(appointment_date=week_day_date)
+
+                    day_passed = week_day_date < today.date()
+
                     week_data.append({
                         "day": day,
                         "appointments": day_appointments,
                         "is_weekend": is_weekend,
+                        "day_passed": day_passed,
                     })
 
             appointments_calendar.append(week_data)

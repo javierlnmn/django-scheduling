@@ -35,9 +35,10 @@
                 {% for day_data in week %}
                     <div class="
                             relative h-40 p-2 shadow-md rounded-md
+                            {% if day_data.day_passed %} opacity-50 bg-gray-600/5 {% endif %}
                             {% if day_data.day == 0 %} bg-gray-700/5
                             {% elif day_data.day == today_num and month_today == month_num and year_today == year  %} border-2 border-yellow-400
-                            {% elif day_data.is_weekend %} bg-sky-900 text-white {% endif %}
+                            {% elif day_data.is_weekend %} !bg-sky-900 text-white {% endif %}
                         "
                     >
                         {% if day_data.day != 0 %}
