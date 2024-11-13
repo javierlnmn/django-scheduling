@@ -39,7 +39,7 @@
                 <div class="flex gap-4 items-center max-sm:flex-col">
                     <div class="group w-full">
                         <label for="appointment_date-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.appointment_date.errors %}text-red-600/80 group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Date *</label>
-                        <input required type="date" id="appointment_date-input" name="appointment_date" required placeholder="Date" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.appointment_date.errors %}!text-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                        <input min="{{today_date}}" required type="date" id="appointment_date-input" name="appointment_date" required placeholder="Date" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.appointment_date.errors %}!text-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
                     </div>
         
                     <div class="group w-full">

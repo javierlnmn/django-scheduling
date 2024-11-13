@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from django.http import JsonResponse, Http404
@@ -15,6 +17,11 @@ class AppointmentFormView(FormView):
     template_name = 'appointments/appointment_form.html'
     form_class = AppointmentForm
     success_url = reverse_lazy('appointments:appointment-confirmation-page')
+
+    def get_context_data(self, **kwargs):
+        context = super(AppointmentFormView, self).get_context_data(**kwargs)
+        context['today_date'] = datetime.today().strftime('%Y-%m-%d')
+        return context
     
     def form_valid(self, form):
 

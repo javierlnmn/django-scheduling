@@ -3,7 +3,7 @@ from django.utils import timezone
 from common.utils import generate_unique_token
 from accounts.models import CustomUser
 
-from datetime import time, datetime
+from datetime import datetime
 import calendar
 
 DAYS_WEEK = [(i, list(calendar.day_name)[i]) for i in range(len(list(calendar.day_name)))]
@@ -69,16 +69,23 @@ class Appointment(models.Model):
     @staticmethod
     def get_available_times(date):
         
+        parsed_date = datetime.strptime(date, '%Y-%m-%d').date()
+        
         is_holiday = Holiday.objects.filter(date=date).exists()
+        is_today = datetime.today().date() == parsed_date
+        now = datetime.now()
             
         if is_holiday:
             available_times = []
             return available_times
             
-        parsed_date = datetime.strptime(date, '%Y-%m-%d').date()
         day_of_week = parsed_date.weekday()
 
-        all_times = AppointmentTime.objects.filter(week_days__name=day_of_week)
+        if is_today:
+            all_times = AppointmentTime.objects.filter(week_days__name=day_of_week, time__gt=now)
+        else:
+            all_times = AppointmentTime.objects.filter(week_days__name=day_of_week)
+        
         existing_appointments = Appointment.objects.filter(appointment_date=date).values_list('appointment_time__time', flat=True)
 
         available_times = [{
