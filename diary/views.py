@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
 from appointments.models import Appointment
-from diary.utils import get_next_month, get_month_first_last_dates
+from diary.utils import get_next_prev_month, get_month_first_last_dates
 
 class DiaryView(LoginRequiredMixin, View):
 
@@ -17,25 +17,22 @@ class DiaryView(LoginRequiredMixin, View):
         today = timezone.now()
         today_num = today.day
 
-        current_page_month_param = request.GET.get('currentMonth', None)
-        move_direction_param = request.GET.get('move', None)
+        month_param = request.GET.get('month', None)
+        year_param = request.GET.get('year', None)
 
-        changed_year = False
-
-        if current_page_month_param and move_direction_param:
-            month_num, changed_year = get_next_month(int(current_page_month_param), move_direction_param)
+        if month_param and year_param:
+            month_num = int(month_param)
             month_str = calendar.month_name[month_num]
+            year = int(year_param)
         else:
             month_num = today.month
             month_str = calendar.month_name[month_num]
-        
-        year = today.year
+            year = today.year
 
-        if changed_year:
-            if move_direction_param == 'left':
-                year -= 1
-            elif move_direction_param == 'right':
-                year += 1
+        month_next = get_next_prev_month(month_num, 'next')
+        month_prev = get_next_prev_month(month_num, 'prev')
+        year_next = year + 1
+        year_prev = year - 1
 
         month_first_date, month_last_date = get_month_first_last_dates(year, month_num)            
 
@@ -75,8 +72,12 @@ class DiaryView(LoginRequiredMixin, View):
             'month_str': month_str,
             'month_num': month_num,
             'month_today': today.month,
+            'month_next': month_next,
+            'month_prev': month_prev,
             'year': year,
             'year_today': today.year,
+            'year_next': year_next,
+            'year_prev': year_prev,
             'appointments_calendar': appointments_calendar,
         }
 

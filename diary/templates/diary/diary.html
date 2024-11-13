@@ -5,7 +5,7 @@
 <main class="flex-1 flex flex-col justify-center items-center gap-4 text-sky-900">
 
     <div class="w-11/12 mx-auto pt-6 flex gap-3 items-center justify-between">
-        <a href="{% url 'diary:diary' %}?currentMonth={{month_num}}&move=left">
+        <a href="{% url 'diary:diary' %}?month={{month_prev}}&year={{year_prev}}">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M5 12l14 0" />
@@ -14,7 +14,7 @@
             </svg>
         </a>
         <h2 class="text-5xl max-md:text-3xl font-black text-center italic">{{month_str}}</h2>
-        <a href="{% url 'diary:diary' %}?currentMonth={{month_num}}&move=right">
+        <a href="{% url 'diary:diary' %}?month={{month_next}}&year={{year_next}}">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M5 12l14 0" />
