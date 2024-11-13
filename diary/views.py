@@ -1,9 +1,9 @@
 import calendar
-from datetime import datetime
 
 from django.shortcuts import render
 from django.views.generic.base import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 
 from appointments.models import Appointment
 from diary.utils import get_next_month, get_month_first_last_dates
@@ -14,7 +14,7 @@ class DiaryView(LoginRequiredMixin, View):
 
     def get(self, request):
 
-        today = datetime.today()
+        today = timezone.now()
         today_num = today.day
 
         current_page_month_param = request.GET.get('currentMonth', None)

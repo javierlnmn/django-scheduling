@@ -72,8 +72,8 @@ class Appointment(models.Model):
         parsed_date = datetime.strptime(date, '%Y-%m-%d').date()
         
         is_holiday = Holiday.objects.filter(date=date).exists()
-        is_today = datetime.today().date() == parsed_date
-        now = datetime.now()
+        is_today = timezone.now().date() == parsed_date
+        now = timezone.now()
             
         if is_holiday:
             available_times = []

@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from django.http import JsonResponse, Http404
@@ -8,6 +6,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.template.loader import get_template
 from django.conf import settings
+from django.utils import timezone
 
 from appointments.forms import AppointmentForm
 from appointments.models import Appointment
@@ -20,7 +19,7 @@ class AppointmentFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(AppointmentFormView, self).get_context_data(**kwargs)
-        context['today_date'] = datetime.today().strftime('%Y-%m-%d')
+        context['today_date'] = timezone.now().strftime('%Y-%m-%d')
         return context
     
     def form_valid(self, form):
