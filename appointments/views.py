@@ -10,7 +10,6 @@ from django.conf import settings
 from appointments.forms import AppointmentForm
 from appointments.models import Appointment
 
-import json
 
 class AppointmentFormView(FormView):
     template_name = 'appointments/appointment_form.html'
