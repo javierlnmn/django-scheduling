@@ -24,8 +24,8 @@ class UserRegistrationFormView(FormView):
             user_appointments = Appointment.objects.filter(email=user_email)
             user_appointments.update(
                 user=user,
-                name=user.name,
-                surname=user.surname,
+                name=user.first_name,
+                surname=user.last_name,
             )
 
             self.request.user = user
