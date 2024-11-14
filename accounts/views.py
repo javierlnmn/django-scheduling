@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 from appointments.models import Appointment
 from .models import CustomUser
@@ -21,7 +22,11 @@ class UserRegistrationFormView(FormView):
             user_email = form.instance.email
 
             user_appointments = Appointment.objects.filter(email=user_email)
-            user_appointments.update(user=user)
+            user_appointments.update(
+                user=user,
+                name=user.name,
+                surname=user.surname,
+            )
 
             self.request.user = user
 
@@ -40,7 +45,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['request'] = self.request
+        kwargs['user'] = self.request.user
         return kwargs
 
     def form_valid(self, form):
@@ -49,7 +54,10 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
         if new_password:
             self.object.set_password(new_password)
             update_session_auth_hash(self.request, self.object)
+            messages.success(self.request, 'Password updated.')
+
 
         self.object = form.save()
+        messages.success(self.request, 'Profile details updated.')
 
         return super().form_valid(form)

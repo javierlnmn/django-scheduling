@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model, password_validation
-from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 
 CustomUserModel = get_user_model()
@@ -30,11 +29,11 @@ class UserProfileForm(UserChangeForm):
         exclude = ('password',)
 
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
+        self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        user = self.request.user
+        user = self.user
 
         cleaned_data = super().clean()
         old_password = cleaned_data.get("old_password")

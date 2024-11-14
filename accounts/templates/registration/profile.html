@@ -4,12 +4,84 @@
 {% block content %}
 
 <main class="flex-1 grid place-items-center bg-gray-50-700 text-sky-900">
-    {{user}}
-    <section class="w-11/12 max-w-[1200px] mx-auto py-6">
+    <section class="w-11/12 max-w-[1200px] mx-auto py-6 flex flex-col gap-6">
+        <h2 class="text-5xl max-md:text-3xl font-black text-center italic"><span class="underline text-yellow-500 decoration-yellow-500">{{user.username}}</span>'s account</h2>
+        {% if messages %}
+        <div class="flex flex-col gap-4">
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="flex items-center gap-2">
+                    <svg  xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 2c-.218 0 -.432 .002 -.642 .005l-.616 .017l-.299 .013l-.579 .034l-.553 .046c-4.785 .464 -6.732 2.411 -7.196 7.196l-.046 .553l-.034 .579c-.005 .098 -.01 .198 -.013 .299l-.017 .616l-.004 .318l-.001 .324c0 .218 .002 .432 .005 .642l.017 .616l.013 .299l.034 .579l.046 .553c.464 4.785 2.411 6.732 7.196 7.196l.553 .046l.579 .034c.098 .005 .198 .01 .299 .013l.616 .017l.642 .005l.642 -.005l.616 -.017l.299 -.013l.579 -.034l.553 -.046c4.785 -.464 6.732 -2.411 7.196 -7.196l.046 -.553l.034 -.579c.005 -.098 .01 -.198 .013 -.299l.017 -.616l.005 -.642l-.005 -.642l-.017 -.616l-.013 -.299l-.034 -.579l-.046 -.553c-.464 -4.785 -2.411 -6.732 -7.196 -7.196l-.553 -.046l-.579 -.034a28.058 28.058 0 0 0 -.299 -.013l-.616 -.017l-.318 -.004l-.324 -.001zm2.293 7.293a1 1 0 0 1 1.497 1.32l-.083 .094l-4 4a1 1 0 0 1 -1.32 .083l-.094 -.083l-2 -2a1 1 0 0 1 1.32 -1.497l.094 .083l1.293 1.292l3.293 -3.292z" fill="currentColor" stroke-width="0" />
+                    </svg>
+                    <p class="text-green-600 font-bold">{{ message }}</p>
+                </div>
+                {% else %}
+                    <p class="text-red-600 font-bold">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
         <form action="" method="POST">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">dale</button>
+            <div class="flex flex-col gap-4">
+                <h2 class="text-3xl max-sm:text-2xl font-black">Personal data:</h2>
+                <div class="flex gap-4 items-center max-sm:flex-col">
+                    <div class="group w-full">
+                        <label for="first_name-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.first_name.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">First Name *</label>
+                        <input value="{{ form.instance.first_name }}" required placeholder="First Name *" type="text" name="first_name" maxlength="150" id="first_name-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.first_name.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                    </div>
+
+                    <div class="group w-full">
+                        <label for="last_name-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.last_name.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Last Name *</label>
+                        <input value="{{ form.instance.last_name }}" required placeholder="Last Name *" type="text" name="last_name" maxlength="150" id="last_name-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.last_name.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                    </div>
+                </div>
+
+                <div class="flex gap-4 items-center max-sm:flex-col">
+                    <div class="group w-full">
+                        <label for="email-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.email.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Email *</label>
+                        <input value="{{ form.instance.email }}" required placeholder="Email *" type="text" name="email" maxlength="150" id="email-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.email.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                    </div>
+
+                    <div class="group w-full">
+                        <label for="phone_number-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.phone_number.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Phone Number</label>
+                        <input value="{{ form.instance.phone_number }}" placeholder="Phone Number" type="text" name="phone_number" maxlength="150" id="phone_number-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.phone_number.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                    </div>
+                </div>
+                <span class="w-full h-[1px] bg-sky-900/40 mt-2"></span>
+                <h2 class="text-3xl max-sm:text-2xl font-black">Password change:</h2>
+                
+                <div class="group w-full">
+                    <label for="old_password-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.old_password.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Old Password *</label>
+                    <input value="********" required placeholder="Old Password *" type="password" name="old_password" maxlength="150" id="old_password-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.old_password.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                </div>
+
+                <div class="flex gap-4 items-center max-sm:flex-col">
+                    <div class="group w-full">
+                        <label for="new_password-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.new_password.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">New Password</label>
+                        <input placeholder="New Password" type="password" name="new_password" maxlength="150" id="new_password-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.new_password.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                    </div>
+
+                    <div class="group w-full">
+                        <label for="confirm_password-input" class="block font-bold w-full pb-2 text-md transition-all duration-200 ease-in-out {% if form.confirm_password.errors %}!text-red-600/80 !group-focus-within:text-red-600/80{% else %} group-focus-within:text-yellow-500 {% endif %}">Confirm Password</label>
+                        <input placeholder="Confirm Password" type="password" name="confirm_password" maxlength="150" id="confirm_password-input" class="bg-gray-50 border-sky-900/20 border-2 h-12 w-full placeholder-sky-900/80 group-focus-within:border-yellow-500 rounded-md px-3 outline-none transition-all duration-200 ease-in-out bg-gray-50-700 focus:ring-0 {% if form.confirm_password.errors %}!placeholder-red-600/80 !border-red-600/80 !group-focus-within:border-red-500{% endif %}" />
+                    </div>
+                </div>
+                {% if form.errors or form.non_field_errors %}
+                    <div class="flex flex-col gap-2">
+                        {% for field, errors in form.errors.items %}            
+                                <p class="text-red-600/80"><strong>{{ field|capfirst }}</strong>:&nbsp;{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                        {% endfor %}
+        
+                        {% for errors in form.non_field_errors.items %}            
+                                <p class="text-red-600/80">{% for error in errors %}{{ error }}&nbsp;{% endfor %}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <button class="w-full h-12 rounded-md bg-sky-900 transition-colors hover:bg-sky-800 text-white" type="submit">Change Data</button>
+            </div>
         </form>
     </section>
 
